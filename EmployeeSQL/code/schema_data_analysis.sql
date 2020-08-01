@@ -28,7 +28,14 @@ from employees
 where first_name='Hercules'
 and last_name like 'B%';
 
-select * from employees
+-- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
+select e.emp_no, e.last_name, e.first_name, d.dept_name
+from employees as e
+inner join dept_emp as x on x.emp_no=e.emp_no
+inner join departments as d on d.dept_no=x.dept_no
+where d.dept_name = 'Sales';
+
+select * from departments
 
 -- Perform an INNER JOIN on the two tables
 SELECT players.first_name, players.last_name, players.hand, matches.loser_rank
