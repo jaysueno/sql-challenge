@@ -35,34 +35,15 @@ inner join dept_emp as x on x.emp_no=e.emp_no
 inner join departments as d on d.dept_no=x.dept_no
 where d.dept_name = 'Sales';
 
-select * from departments
+-- 7. List all employees in the Sales andDev elopment departments, including their employee number, last name, first name, and department name.
+select e.emp_no, e.last_name, e.first_name, d.dept_name
+from employees as e
+inner join dept_emp as x on x.emp_no=e.emp_no
+inner join departments as d on d.dept_no=x.dept_no
+where d.dept_name = 'Sales' or d.dept_name = 'Development';
 
--- Perform an INNER JOIN on the two tables
-SELECT players.first_name, players.last_name, players.hand, matches.loser_rank
-FROM matches
-INNER JOIN players ON
-players.player_id=matches.loser_id;
-
--- Alternative solution:
--- Perform an INNER JOIN on the two tables
-SELECT p.first_name, p.last_name, p.hand, m.loser_rank
-FROM matches AS m
-INNER JOIN players AS p ON
-p.player_id=m.loser_id;
-
-
--- Filter the query to show only dogs under the age of 5
-SELECT pet_type, pet_name
-FROM people
-WHERE pet_type = 'dog'
-AND pet_age < 5;
-
--- Update "JS" to "JavaScript"
-UPDATE programming_languages
-SET language = 'JavaScript'
-WHERE id = 2;
-
--- Change HTML's rating to 90
-UPDATE programming_languages
-SET rating = 90
-WHERE id = 1;
+-- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+select last_name, count(last_name)
+from employees
+group by last_name
+order by count desc;
